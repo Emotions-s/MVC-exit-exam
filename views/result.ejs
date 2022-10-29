@@ -1,0 +1,14 @@
+<% if (error.length > 0) {%>
+    <h2>Feedback Error</h2>
+    <% for (let er of error) {%>
+        <h4><%= er %> </h4>
+    <% } %>
+<% } else {%>
+    <h4>Success</h4>
+<% } %>
+
+<div>
+    <a href="/">
+        <h3>Back to Homepage</h3>
+    </a>
+</div>

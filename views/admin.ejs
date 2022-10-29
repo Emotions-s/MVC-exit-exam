@@ -1,0 +1,58 @@
+<h1>Adminpage</h1>
+<div>
+    <a href="/">
+        <h3>Back to Homepage</h3>
+    </a>
+</div>
+<table>
+    <tr>
+        <th>NO</th>
+        <th>Feedback</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Timestamp</th>
+        <th>stutus</th>
+        <th>edit</th>
+    </tr>
+    <% for (let list of data) { %>
+        <tr>
+                <td><%= list['id'] %> </td>
+                <td><%= list['feedback'] %> </td>
+                <td><%= list['f_name'] %> </td>
+                <td><%= list['l_name'] %> </td>
+                <td><%= list['email'] %> </td>
+                <td><%= list['time_stamp'] %> </td>
+                <td><%= list['status'] %> </td>
+                <% if (list['status'] === 'Close') {%>
+                    <td>x</td>
+                <% } else if (list['status'] === 'Escalate'){%>
+                    <td>
+                        <form action="admin" method="post">
+                            <input type="hidden" name="id" value="<%= list['id'] %>">
+                            <select id="status" name="status">
+                                <optgroup label="status">
+                                    <option value="Close">Close</option>
+                                </optgroup>
+                              </select>
+                              <button type="submit">change</button>
+                        </form>
+                    </td>
+                <% } else {%>
+                    <td>
+                        <form action="admin" method="post">
+                            <input type="hidden" name="id" value="<%= list['id'] %>">
+                            <select id="status" name="status">
+                                <optgroup label="status">
+                                    <option value="Escalate">Escalate</option>
+                                    <option value="Close">Close</option>
+                                </optgroup>
+                              </select>
+                              <button type="submit">change</button>
+                        </form>
+                    </td>
+                <% }%>
+
+        </tr>
+    <% } %>
+</table>
